@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yotta.js</title>
+  <script src="yotta.js"></script>
+  <style>
+    body {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    main {
+      max-width: 40%;
+    }
+  </style>
+</head>
+<body>
+  <script type="text/javascript">
+    const appTag = Yotta(
+      Header(
+        H1('Welcome to Yotta.js'),
+        Img('icons/yotta_256x256.png').Att('width', '128'),
+      ),
+      Main(
+        Section(
+          H2('About Yotta.js'),
+          P('Yotta.js is a minimalist front-end framework designed to simplify web development.'),
+        ),
+        Br(), Hr(), Br(),
+        Section(
+          H2('Features'),
+          Ul(
+            Li('Lightweight and efficient'),
+            Li('Easy to use and understand'),
+            Li('Powerful tag-based architecture'),
+          ),
+        ),
+        Br(), Hr(), Br(),
+        Section(
+          H2('Example of Usage'),
+          Div(Code('<body>', Br(), '<div id="entry">entry</div>', Br(), '<body>')),
+          Br(),
+          Div(Code("const YottaImage = Img('icons/yotta_256x256.png') .Att('width', '96');", 
+            Br(), "document.getElementById('entry') .replaceChildren(YottaImage);")),
+          Br(),
+          Div(Button('Click here to run replace').Click(() => {
+            const YottaImage = Img('icons/yotta_256x256.png') .Att('width', '96');
+            document.getElementById('entry').replaceChildren(YottaImage);
+          })),
+          Br(),
+          Div(Code("const entry = document.getElementById('entry');",
+            Br(), "const num = entry.children.length;",
+            Br(), "const YottaImage = Img('icons/yotta_256x256.png') .Att('width', num % 2 == 0 ? '64' : '32');", 
+            Br(), "entry .appendChild(YottaImage);")),
+          Br(),
+          Div(Button('Click here to run append').Click(() => {
+            const entry = document.getElementById('entry');
+            const num = entry.children.length;
+            const YottaImage = Img('icons/yotta_256x256.png') .Att('width', num % 2 == 0 ? '64' : '32');
+            entry .appendChild(YottaImage);
+          })),
+          Br(),
+          Div(Code("document.getElementById('entry') .replaceChildren('entry');")),
+          Br(),
+          Div(Button("Click here to restart the div 'entry'").Click(() => {
+            document.getElementById('entry').replaceChildren('entry');
+          })),
+          Br(),
+          H4("Div with id 'entry'"),
+          Hr(),
+          Div('entry').Id('entry'),
+          Hr(),
+        ),
+        Br(),
+        Section(
+          H2('Code Documentation'),
+          P('In Yotta.js there are two types of node, a tag node and a text node:'),
+          Ul(
+            Li('Tag node: ', Code('Div()')),
+            Li('Text node: ', Code('(\'Hello\')')),
+          ),
+          P('Tag nodes can be created with Yotta tags: '),
+          Ul(Li(Code('Article(), Button(), Div() and others...'))),
+          P('Text nodes can only be created by passing them as parameters to Yotta tags: '),
+          Ul(Li(Code('P(\'The text of the paragraph is a text node\')'))),
+          P('There is a special tag node that serves as a container for other tags: '),
+          Ul(Li(Code('Yotta(...tags)'))),
+          P(Code('...tags'), ' means it can accept any number of tags.'),
+          Br(),
+          H3('Harnessing Yotta Tags as Powerful Components'),
+          P('All Yotta tags return themselves, so you can use tags in a component like way:'),
+          Div(Code("const appHeader = H1('My page');", 
+            Br(), "const appContent = H3('Main Content');",
+            Br(), "const appFooter = H5('Footer');",
+            Br(), "const app = Yotta(appHeader, appContent, appFooter);",
+            Br(), "document.getElementById('app').replaceChildren(app);"
+          )),
+          Br(),
+          Div(Button("Click here to run app").Click(() => {
+            const appHeader = H1('My page');
+            const appContent = H3('Main Content');
+            const appFooter = H5('Footer');
+            const app = Yotta(appHeader, appContent, appFooter);
+            document.getElementById('app').replaceChildren(app);
+          })),
+          Br(),
+          Div(Code("document.getElementById('app').replaceChildren('app');")),
+          Br(),
+          Div(Button("Click here to restart the div 'app'").Click(() => {
+            document.getElementById('app').replaceChildren('app');
+          })),
+          Br(),
+          H4("Div with id 'app'"),
+          Hr(),
+          Div('app').Id('app').Att('style', 'display: hidden;'),
+          Hr(),
+          Br(),
+          H3('Yotta Tags'),
+          P('The following Yotta tags can handle any number of tags ', Code('(...tags)'), ':'),
+          Ul(
+            Li(Code('Yotta')),
+            Li(Code('Aside')), Li(Code('Article')),
+            Li(Code('Button')),
+            Li(Code('Canvas')), Li(Code('Code')),
+            Li(Code('Div')),
+            Li(Code('Fieldset')), Li(Code('Figure')), Li(Code('Figcaption')), Li(Code('Footer')), Li(Code('Form')),
+            Li(Code('H1')), Li(Code('H2')), Li(Code('H3')), Li(Code('H4')),Li(Code('H5')), Li(Code('H6')),
+            Li(Code('Header')),
+            Li(Code('Legend')), Li(Code('Li')),
+            Li(Code('Main')),
+            Li(Code('Nav')),
+            Li(Code('Ol')), Li(Code('Option')), Li(Code('Optgroup')),
+            Li(Code('P')), Li(Code('Pre')),
+            Li(Code('Section')), Li(Code('Select')), Li(Code('Span')),
+            Li(Code('Table')), Li(Code('Tbody')), Li(Code('Td')), Li(Code('Textarea')), Li(Code('Th')),
+            Li(Code('Thead')), Li(Code('Tfoot')), Li(Code('Tr')),
+            Li(Code('Ul')),
+          ), 
+          B('Examples:'),
+          Ul(
+            Li(Code("Div(H1('Welcome to Yotta.js'), P('This is a paragraph inside a div.'))")),
+            Li(Code("Section(Header(H2('Section Header')), P('Content inside a section.'))")),
+            Li(Code("Article(H3('Article Title'), P('Article content goes here.'))")),
+          ),
+          Hr(),
+          Div(
+            Div(H1('Welcome to Yotta.js'), P('This is a paragraph inside a div.')),
+            Section(Header(H2('Section Header')), P('Content inside a section.')),
+            Article(H3('Article Title'), P('Article content goes here.')),
+          ),
+          Hr(),
+          Br(),
+          H3('Special Yotta Tags'),
+          P('The following Yotta tags have special requirements, such as not accepting other tags, ', Br(), B('obligatory attributes'), ' (text nodes) and ', B('default values'), ' (text nodes).'),
+          Ul(
+            Li(Code('Br ()')),
+            Li(Code('Hr ()')),
+            Li(Code('B (text)')),
+            Li(Code('I (text)')),
+            Li(Code('Img (src)')),
+            Li(Code('Track (src)')),
+            Li(Code('Source (src)')),
+            Li(Code('Iframe (src)')),
+            Li(Code('Label (For, ...tags)')),
+            Li(Code("A (href = '#', ...tags)")),
+            Li(Code('Audio (src, ...tags)')),
+            Li(Code('Video (src, ...tags)')),
+            Li(Code("Link (href, rel = 'stylesheet')")),
+            Li(Code("Input (type = 'text', value = '')")),
+            Li(Code("Script (src, type = 'text/javascript')")),
+          ),
+          B('Examples:'),
+          Ul(
+            Li(Code("B('Yotta.js is amazing!')")),
+            Li(Code("Input('number', '102')")),
+          ),
+          Hr(),
+          Div(
+            B('Yotta.js is amazing! '), 
+            Input('number', '102'),
+          ),
+          Hr(),
+          Br(),
+          H3('Yotta Tag Methods'),
+          P("All Yotta tags include some methods for easy manipulation of it's attributes and behavior."),
+          P("It possible to concatenate methods since they return the Yotta tag itself."),
+          Ul(
+            Li(Code('.Click (onclick)')),
+            Li(Code('.Press (onmousedown)')),
+            Li(Code('.Att (attName, value)')),
+            Li(Code('.Id (identifier)')),
+            Li(Code('.Class (classes)')),
+          ),
+          B('Examples:'),
+          Ul(
+            Li(Code("Div(Button('click me!') .Click( ()=>{alert('Hello');} ))")),
+            Li(Code("Img('icons/yotta_256x256.png') .Att( 'width','150' )")),
+            Li(Code("Main('World!') .Id( 'entry' ) .Class( 'hidden article-container' )")),
+          ),
+          Hr(),  
+          Div(
+            Div(Button('click me!') .Click( ()=>{alert('Hello');} )),
+            Img('icons/yotta_256x256.png') .Att( 'width','150' ),
+            Main('World!') .Id( 'entry' ) .Class( 'hidden article-container' ),
+          ),
+          Hr(),
+        ),
+      ),
+      Footer(P('© 2024 Yotta.js. All rights reserved.')).Att('style', 'padding: 2% 0;'),
+    );
+    document.body.appendChild(appTag);
+  </script>
+</body>
+</html>
