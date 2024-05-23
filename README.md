@@ -9,4 +9,4 @@ Yotta.js allows developers to create HTML elements using a tag-based approach, p
 
 ## Documentation
 
-For full documentation and usage examples, please refer to `index.html`.
+For full documentation and usage examples, please refer to [index.html](https://artik02.github.io/Yotta.js/).
